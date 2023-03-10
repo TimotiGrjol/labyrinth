@@ -1,0 +1,18 @@
+#myCanvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 900px;
+}
+#labirint{
+    background-color: rgb(255, 219, 219);
+    margin:  auto;
+    width: 35em;
+}
+
+#svgl{
+    margin:5em 2em;
+
+}
