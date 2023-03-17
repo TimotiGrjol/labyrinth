@@ -26,7 +26,7 @@ let map1 = [
     "#############################.#"
 ];
 let map2 = [
-"###.###########################",
+"###S###########################",
 "#...#...#.......#.#.#.........#",
 "#.#.#.#######.###.#.#.#####.###",
 "#.#.#.....#...#...#...#...#...#",
@@ -56,7 +56,7 @@ let map2 = [
 "#...#.#...#.#.#.#...#.#...#.#.#",
 "#.###.#.#.#.#.###.###.#.#####.#",
 "#.......#.......#.....#.......#",
-"#############################.#"
+"#############################C#"
 ];
 
 
@@ -101,42 +101,65 @@ b=2;
 
 draw();
 
-
+let row=0;
+let col=3;
 
 document.addEventListener("keydown",function(e){
-if(e.keyCode==39)
-{
+    if(e.keyCode==39)
+        {
+            col+=1;
+            if(map2[row][col]=='#')
+                col-=1;
 
-ctx2.clearRect(a,b,15,15);
-a+=20;
-draw();
+            else{
+            ctx2.clearRect(a,b,15,15);
+            a+=20;
+            draw();
+            }
 
-}  
+    }  
 
-if(e.keyCode==37)
-{
-ctx2.clearRect(a,b,15,15);
-a-=20;
-draw();
+    if(e.keyCode==37)
+        {
+            col-=1;
+            if(map2[row][col]=='#')
+                col+=1;
 
-}
+            else{
+            ctx2.clearRect(a,b,15,15);
+            a-=20;
+            draw();  
+            }              
+    }
 
 
-if(e.keyCode==40)
-{
-ctx2.clearRect(a,b,15,15);
-b=b+20;
-draw();
+    if(e.keyCode==40)
+        {   
+            row+=1;
+            if(map2[row][col]=='#')
+                row-=1;
 
-}
+            else{
+            ctx2.clearRect(a,b,15,15);
+            b=b+20;
+            draw();
+            }
 
-if(e.keyCode==38)
-{
-ctx2.clearRect(a,b,15,15);
-b=b-20;
-draw();
+    }
 
-}
+    if(e.keyCode==38)
+        {   
+            row-=1;
+            if(map2[row][col]=='#')
+                row+=1;
+
+            else{
+            ctx2.clearRect(a,b,15,15);
+            b=b-20;
+            draw();
+            }
+
+    }
 
 }
 )
