@@ -1,0 +1,21 @@
+#myCanvas {
+    padding-left: 0;
+    padding-right: 0;
+    
+    display: block;
+    width: 900px;
+    background-image: url("images/floorS.png");
+    background-repeat: repeat;
+}
+#labirint{
+    background-color: rgb(255, 219, 219);
+    margin:  auto;
+    width: 35em;
+}
+
+
+#wrapper{
+    width:900px;
+    margin: auto;
+    height: 900px;
+}

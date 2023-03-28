@@ -2,29 +2,16 @@ var canvas = document.getElementById("myCanvas");
 console.log(canvas);
 var ctx = canvas.getContext("2d");
 
-let map1 = [
-    "#.#############################",
-    "#...#...#.....#.......#.#...#.#",
-    "#.###.###.###.#.#####.#.###.#.#",
-    "#.........#.#.......#...#.#...#",
-    "###.#######.#.#.#######.#.#.###",
-    "#.......#.#...#.....#.#.......#",
-    "#.#####.#.#.#####.###.###.#.###",
-    "#.#...#...#.#.......#...#.#.#.#",
-    "#.###.#.#.###########.#######.#",
-    "#.#.....#...#.#.#.#...#...#...#",
-    "#.#####.#####.#.#.###.###.###.#",
-    "#.....#.#.....#.#.......#.#...#",
-    "###.###.#.###.#.#######.#.#.#.#",
-    "#...#.....#...#.....#.......#.#",
-    "###.#########.#.#######.#.###.#",
-    "#.#...#.#...........#...#...#.#",
-    "#.#.###.#####.#.###.#####.###.#",
-    "#.#.#.......#.#.#.......#...#.#",
-    "#.#.#.###.#######.#########.###",
-    "#...#.#.......................#",
-    "#############################.#"
-];
+const wall=document.getElementById("Walls");
+
+const personD=document.getElementById("personD");
+const personL=document.getElementById("personL");
+const personR=document.getElementById("personR");
+const personU=document.getElementById("personU");
+
+
+
+
 let map2 = [
 "###S###########################",
 "#...#...#.......#.#.#.........#",
@@ -61,23 +48,56 @@ let map2 = [
 
 
 
+[
+    "###S###########################",
+    "#!!!#...#.......#.#.#.........#",
+    "#!#.#.#######.###.#.#.#####.###",
+    "#!#.#!!!..#...#...#...#...#...#",
+    "#!###!#!###.###.#########.#.###",
+    "#!..#!#!#.....#...#.....#.....#",
+    "#!###!#!#####.###.#.#.#.#####.#",
+    "#!#.#!#!!!....#.....#.#.......#",
+    "#!#.#!#.#!###.###.###.###.###.#",
+    "#!!!!!#.#!#.....#.#...#.....#.#",
+    "#.###.###!#########.#.#####.###",
+    "#.#.#.#.#!!!!!!!!!..#.#.#...#.#",
+    "#.#.###.#####.#.#!###.#.#.###.#",
+    "#...#.#.....#.#.#!..#.#.#...#.#",
+    "#####.###.###.###!#####.#####.#",
+    "#.#.........#.#.#!!!!!........#",
+    "#.#.###.#######.#####!###.#.#.#",
+    "#...#.#.#.....#.#....!#...#.#.#",
+    "#.###.#####.###.#.###!#########",
+    "#.#.........#.....#..!#!!!..#.#",
+    "#.#.#.#####.#.#.###.#!#!#!###.#",
+    "#...#...#...#.#.#.#.#!!!#!!!!!#",
+    "#.#.#.#########.#.#######.#.#!#",
+    "#.#.#.#.#.#.....#.........#.#!#",
+    "###.###.#.#.#.#####.#########!#",
+    "#.........#.#...#.#...#..!!!!!#",
+    "#########.#.###.#.###.###!#.###",
+    "#...#.#...#.#.#.#...#.#!!!#.#.#",
+    "#.###.#.#.#.#.###.###.#!#####.#",
+    "#.......#.......#.....#!!!!!!!#",
+    "#############################C#"
+    ];
+    
 
-drawLab();
+
+
+risi();
 
 
 
 
 //maze generator!!
-function drawLab(){
+function risi(){
     for(let i=0; i<map2.length; i++){
         let x=0;
         let y=i*20;
         for(let j=0; j<map2[i].length; j++){
             if(map2[i][j]=="#"){
-                ctx.beginPath();
-                ctx.rect(x, y, 19, 19);
-                ctx.stroke();
-                ctx.fill();
+                ctx.drawImage(wall,x, y);
                 x=x+20
                 
             }
@@ -92,29 +112,52 @@ function drawLab(){
 var canvas2=document.getElementById('myCanvas');
 var ctx2=canvas2.getContext("2d");
 var a=62;
-function draw(){
-ctx.fillRect(a,b,15,15);
+
+
+function drawD(){
+ctx.drawImage(personD, a,b);
+
+}
+
+function drawL(){
+ctx.drawImage(personL, a,b);
+
+}
+function drawR(){
+    ctx.drawImage(personR, a,b);
+    
+}
+
+
+function drawU(){
+    ctx.drawImage(personU, a,b);
 
 }
 
 b=2;
 
-draw();
+drawD();
+
 
 let row=0;
 let col=3;
+
+
+
 
 document.addEventListener("keydown",function(e){
     if(e.keyCode==39)
         {
             col+=1;
-            if(map2[row][col]=='#')
+            if(map2[row][col]=='#'){
                 col-=1;
+                drawR();
+            }
 
             else{
             ctx2.clearRect(a,b,15,15);
             a+=20;
-            draw();
+            drawR();
             }
 
     }  
@@ -122,47 +165,73 @@ document.addEventListener("keydown",function(e){
     if(e.keyCode==37)
         {
             col-=1;
-            if(map2[row][col]=='#')
+            if(map2[row][col]=='#'){
                 col+=1;
-
+                drawL();
+            }
             else{
             ctx2.clearRect(a,b,15,15);
             a-=20;
-            draw();  
+            drawL();  
             }              
     }
 
 
     if(e.keyCode==40)
         {   
-            row+=1;
-            if(map2[row][col]=='#')
-                row-=1;
 
+            row+=1;
+            if(map2[row][col]=='#'){
+                row-=1;
+                drawD();
+            }
+
+            else if(map2[row][col]=='C'){
+                row+=1;
+                drawD();  
+                finish();
+            }
             else{
             ctx2.clearRect(a,b,15,15);
             b=b+20;
-            draw();
+            drawD();
             }
 
     }
 
     if(e.keyCode==38)
         {   
-            row-=1;
-            if(map2[row][col]=='#')
-                row+=1;
+        row-=1;
+        if(map2[row]==0)
+            row+=1;
+        if(map2[row][col]=='#'){
+            row+=1;
+            drawU();
+        }
 
-            else{
+        else{
             ctx2.clearRect(a,b,15,15);
             b=b-20;
-            draw();
+            drawU();
             }
 
     }
+    
+
+})
+
+
+function finish(){
+
+    swal({
+        title: "Good job!",
+        text: "You clicked the button!",
+        icon: "success",
+        button: "Aww yiss!",
+      });
 
 }
-)
+
 
 
 

@@ -3,17 +3,26 @@
 	<head>
 		<title>	</title>
 		<link rel="icon" type="image/x-icon" href="images/favicon.ico">
-		<link rel="stylesheet" href="Style.css">
+		<link rel="stylesheet" href="style.css">
 		<meta charset="utf-8" />
        
 	</head>
 	<body>
 		<div id="wrapper">
-		  <canvas id="myCanvas"  height="620" width="620"></canvas>
+		  <canvas id="myCanvas"  height="620" width="620">
+
+			<img src="images/smallwall.png" id="Walls"  alt="brickwall">
+			<img src="images/person1D.png" id="personD"  alt="personDown">
+			<img src="images/person1L.png" id="personL"  alt="personLeft">
+			<img src="images/person1R.png" id="personR"  alt="personRight">
+			<img src="images/person1U.png" id="personU"  alt="personUp">
+
+		  </canvas>
 		
 
 		</div>
 
 		<script defer src="script.js"></script>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	</body>
 </html>
