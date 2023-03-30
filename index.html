@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="sl">
 	<head>
-		<title>	</title>
-		<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+		<title> Labyrinth	</title>
+		<link rel="icon" type="image/x-icon" href="images/personD.png">
 		<link rel="stylesheet" href="style.css">
 		<meta charset="utf-8" />
        
 	</head>
-	<body>
+	<body onload="start()">
+
+		
 		<div id="wrapper">
 		  <canvas id="myCanvas"  height="620" width="620">
 
 			<img src="images/smallwall.png" id="Walls"  alt="brickwall">
+			<img src="images/key.png" id="Key"  alt="Key">
+
+
 			<img src="images/person1D.png" id="personD"  alt="personDown">
 			<img src="images/person1L.png" id="personL"  alt="personLeft">
 			<img src="images/person1R.png" id="personR"  alt="personRight">
@@ -23,6 +28,6 @@
 		</div>
 
 		<script defer src="script.js"></script>
-		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	</body>
 </html>

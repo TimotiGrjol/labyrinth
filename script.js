@@ -3,6 +3,7 @@ console.log(canvas);
 var ctx = canvas.getContext("2d");
 
 const wall=document.getElementById("Walls");
+const key=document.getElementById("Key");
 
 const personD=document.getElementById("personD");
 const personL=document.getElementById("personL");
@@ -10,9 +11,10 @@ const personR=document.getElementById("personR");
 const personU=document.getElementById("personU");
 
 
+var masKey=0;
 
 
-let map2 = [
+let map2a = [
 "###S###########################",
 "#...#...#.......#.#.#.........#",
 "#.#.#.#######.###.#.#.#####.###",
@@ -31,7 +33,7 @@ let map2 = [
 "#.#.........#.#.#.............#",
 "#.#.###.#######.#####.###.#.#.#",
 "#...#.#.#.....#.#.....#...#.#.#",
-"#.###.#####.###.#.###.#########",
+"#.###.#####.###.#.###F#########",
 "#.#.........#.....#...#.....#.#",
 "#.#.#.#####.#.#.###.#.#.#.###.#",
 "#...#...#...#.#.#.#.#...#.....#",
@@ -48,7 +50,7 @@ let map2 = [
 
 
 
-[
+let map2line=[
     "###S###########################",
     "#!!!#...#.......#.#.#.........#",
     "#!#.#.#######.###.#.#.#####.###",
@@ -67,7 +69,7 @@ let map2 = [
     "#.#.........#.#.#!!!!!........#",
     "#.#.###.#######.#####!###.#.#.#",
     "#...#.#.#.....#.#....!#...#.#.#",
-    "#.###.#####.###.#.###!#########",
+    "#.###.#####.###.#.###F#########",
     "#.#.........#.....#..!#!!!..#.#",
     "#.#.#.#####.#.#.###.#!#!#!###.#",
     "#...#...#...#.#.#.#.#!!!#!!!!!#",
@@ -81,13 +83,55 @@ let map2 = [
     "#.......#.......#.....#!!!!!!!#",
     "#############################C#"
     ];
+
+
+
     
 
+ let map2=   [
+        "###S###########################",
+        "#!!!#,,,#.......#.#.#.........#",
+        "#!#,#,#######.###.#.#.#####.###",
+        "#!#,#!!!,,#...#...#...#...#...#",
+        "#!###!#!###.###.#########.#.###",
+        "#!,,#!#!#.....#...#.....#.....#",
+        "#!###!#!#####.###.#.#.#.#####.#",
+        "#!#,#!#!!!....#.....#.#.......#",
+        "#!#,#!#.#!###.###.###.###.###.#",
+        "#!!!!!#.#!#.....#.#...#.....#.#",
+        "#,###.###!#########.#.#####.###",
+        "#,#,#.#.#!!!!!!!!!..#.#.#...#.#",
+        "#,#,###.#####.#.#!###.#.#.###.#",
+        "#,,,#.#.....#.#.#!..#.#.#...#.#",
+        "#####.###.###.###!#####.#####.#",
+        "#.#.........#.#.#!!!!!........#",
+        "#.#.###.#######.#####!###.#.#.#",
+        "#...#.#.#.....#.#....!#...#.#.#",
+        "#.###.#####.###.#.###F#########",
+        "#.#.........#.....#,,!#!!!,,#,#",
+        "#.#.#.#####.#.#.###,#!#!#!###,#",
+        "#...#...#...#.#.#,#,#!!!#!!!!!#",
+        "#.#.#.#########.#,#######,#,#!#",
+        "#.#.#.#.#.#.....#,,,,,,,,,#,#!#",
+        "###.###.#.#.#.#####,#########!#",
+        "#.........#.#...#,#,,,#,,!!!!!#",
+        "#########.#.###.#,###,###!#,###",
+        "#...#.#...#.#.#.#,,,#,#!!!#,#,#",
+        "#.###.#.#.#.#.###,###,#!#####,#",
+        "#.......#.......#,,,,,#!!!!!!!#",
+        "#############################C#"
+        ];
+
+
+    
+    
+let kposx=0;
+let kposy=0;
 
 
 risi();
-
-
+fakeStena();
+spawnKey();
 
 
 //maze generator!!
@@ -108,11 +152,60 @@ function risi(){
     }
 }
 
+function start(){
+    swal.fire({
+        title: "Welcome to the dungeon",
+        text: "Find the key and escape!",
+        button: "Start",
+        confirmButtonColor: "darkgreen"
+      });
+
+}
+
+function fakeStena(){
+    let x=420;
+    let y=360;
+    ctx.drawImage(wall,x,y);
+}
+
+
+
+function spawnKey(){
+    let rnd=0, rnd2=0, x=0, y=0;
+
+    while(true){
+        rnd=Math.floor(Math.random() * map2.length);
+        rnd2=Math.floor(Math.random() * map2.length);
+        x=rnd*20;
+        y=rnd2*20;
+        x+=2;
+        y+=2;
+        console.log(rnd,rnd2);
+        if(map2[rnd2][rnd]=="."){
+            ctx.drawImage(key,x,y);
+            break;
+        }
+        else{
+            continue;
+        }
+    }
+    kposx=rnd;
+    kposy=rnd2;
+}
+
+function getKey(){
+    let x=420;
+    let y=360;
+    ctx2.clearRect(x,y,20,20);
+    map2[18][21]='.';
+    masKey=1;
+}
+
 
 var canvas2=document.getElementById('myCanvas');
 var ctx2=canvas2.getContext("2d");
 var a=62;
-
+var b=2;
 
 function drawD(){
 ctx.drawImage(personD, a,b);
@@ -134,7 +227,7 @@ function drawU(){
 
 }
 
-b=2;
+
 
 drawD();
 
@@ -144,11 +237,20 @@ let col=3;
 
 
 
+//console.log(row,col);
+
+
 
 document.addEventListener("keydown",function(e){
-    if(e.keyCode==39)
+    if(e.keyCode==39 || e.keyCode==68 )//desno
         {
             col+=1;
+            if(col===kposx && row===kposy){
+                ctx2.clearRect(a+20,b,15,15);
+                drawR();
+                getKey();
+            }
+
             if(map2[row][col]=='#'){
                 col-=1;
                 drawR();
@@ -162,9 +264,14 @@ document.addEventListener("keydown",function(e){
 
     }  
 
-    if(e.keyCode==37)
+    if(e.keyCode==37 || e.keyCode==65)//levo
         {
             col-=1;
+            if(col===kposx && row===kposy){
+                ctx2.clearRect(a-20,b,15,15);
+                drawL();
+                getKey();
+            }
             if(map2[row][col]=='#'){
                 col+=1;
                 drawL();
@@ -177,44 +284,59 @@ document.addEventListener("keydown",function(e){
     }
 
 
-    if(e.keyCode==40)
-        {   
-
-            row+=1;
-            if(map2[row][col]=='#'){
-                row-=1;
+    if(e.keyCode==40 || e.keyCode==83){ //dol
+            if(map2[row+1][col]=='F' && masKey==0){
                 drawD();
             }
-
-            else if(map2[row][col]=='C'){
-                row+=1;
-                drawD();  
-                finish();
-            }
             else{
-            ctx2.clearRect(a,b,15,15);
-            b=b+20;
-            drawD();
-            }
+                if(col===kposx && row+1===kposy){
+                    ctx2.clearRect(a,b+20,15,15);
+                    drawD();
+                    getKey();
+                }
+                row+=1;
+                if(map2[row][col]=='#'){
+                    row-=1;
+                    drawD();
+                }
+
+                else if(map2[row][col]=='C'){
+                    row-=1;
+                    drawD();  
+                    finish();
+                }
+                else{
+                    ctx2.clearRect(a,b,15,15);
+                    b=b+20;
+                    drawD();
+                }
+        }
 
     }
 
-    if(e.keyCode==38)
-        {   
-        row-=1;
-        if(map2[row]==0)
-            row+=1;
-        if(map2[row][col]=='#'){
-            row+=1;
-            drawU();
+    if(e.keyCode==38 || e.keyCode==87){   //hor
+        
+        if(map2[row][col]=='S' ){
         }
 
         else{
-            ctx2.clearRect(a,b,15,15);
-            b=b-20;
-            drawU();
+            if(col===kposx && row-1===kposy){
+                ctx2.clearRect(a,b-20,15,15);
+                drawU();
+                getKey();
+            }
+            row-=1;
+            if(map2[row][col]=='#'){
+                row+=1;
+                drawU();
             }
 
+            else{
+                ctx2.clearRect(a,b,15,15);
+                b=b-20;
+                drawU();
+                }
+        }
     }
     
 
@@ -223,12 +345,17 @@ document.addEventListener("keydown",function(e){
 
 function finish(){
 
-    swal({
-        title: "Good job!",
+    swal.fire({
+        title: "You won!",
         text: "You clicked the button!",
         icon: "success",
-        button: "Aww yiss!",
-      });
+        confirmButtonText: 'Restart',
+        confirmButtonColor: "darkgreen"
+      }).then(function(isConfirm) {
+        if (isConfirm) {
+          location.reload()}
+          
+        });
 
 }
 
