@@ -194,11 +194,21 @@ function spawnKey(){
 }
 
 function getKey(){
-    let x=420;
-    let y=360;
-    ctx2.clearRect(x,y,20,20);
-    map2[18][21]='.';
-    masKey=1;
+    swal.fire({
+        title: "You won!",
+        icon: "success",
+        confirmButtonText: 'Restart',
+        confirmButtonColor: "darkgreen"
+      }).then(function(isConfirm, 500) {
+        let x=420;
+        let y=360;
+        ctx2.clearRect(x,y,20,20);
+        map2[18][21]='.';
+        masKey=1;
+          
+        });
+
+    
 }
 
 
@@ -301,7 +311,9 @@ document.addEventListener("keydown",function(e){
                 }
 
                 else if(map2[row][col]=='C'){
-                    row-=1;
+                    ctx2.clearRect(a,b,15,15);
+                    b+=20;
+                    row+=1;
                     drawD();  
                     finish();
                 }
@@ -347,7 +359,6 @@ function finish(){
 
     swal.fire({
         title: "You won!",
-        text: "You clicked the button!",
         icon: "success",
         confirmButtonText: 'Restart',
         confirmButtonColor: "darkgreen"
