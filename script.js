@@ -195,18 +195,17 @@ function spawnKey(){
 
 function getKey(){
     swal.fire({
-        title: "You won!",
+        title: "You got the key!",
         icon: "success",
-        confirmButtonText: 'Restart',
-        confirmButtonColor: "darkgreen"
-      }).then(function(isConfirm, 500) {
+        timer: 3000
+      }).then(function(isConfirm) {
         let x=420;
         let y=360;
         ctx2.clearRect(x,y,20,20);
         map2[18][21]='.';
         masKey=1;
           
-        });
+        },500);
 
     
 }
