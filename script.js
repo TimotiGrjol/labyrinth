@@ -197,7 +197,7 @@ function getKey(){
     swal.fire({
         title: "You got the key!",
         icon: "success",
-        timer: 3000
+        confirmButtonColor: "darkgreen"
       }).then(function(isConfirm) {
         let x=420;
         let y=360;
