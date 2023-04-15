@@ -6,6 +6,7 @@
     width: 900px;
     background-image: url("images/floorS.png");
     background-repeat: repeat;
+    
 }
 #labirint{
     background-color: rgb(255, 219, 219);
@@ -22,7 +23,7 @@
 
 
 html{
-    background-image: url('images/background1.png');
+    background-image: url('images/wall1.jpg');
     
     background-size: cover;
 

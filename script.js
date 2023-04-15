@@ -3,6 +3,7 @@ console.log(canvas);
 var ctx = canvas.getContext("2d");
 
 const wall=document.getElementById("Walls");
+const broken=document.getElementById("Broken");
 const key=document.getElementById("Key");
 
 const personD=document.getElementById("personD");
@@ -165,7 +166,7 @@ function start(){
 function fakeStena(){
     let x=420;
     let y=360;
-    ctx.drawImage(wall,x,y);
+    ctx.drawImage(broken,x,y);
 }
 
 
@@ -196,9 +197,10 @@ function spawnKey(){
 function getKey(){
     swal.fire({
         title: "You got the key!",
+        text:"a door has now opened",
         icon: "success",
         confirmButtonColor: "darkgreen"
-      },500).then(function(isConfirm) {
+      },2000).then(function(isConfirm) {
         let x=420;
         let y=360;
         ctx2.clearRect(x,y,20,20);
@@ -357,7 +359,7 @@ document.addEventListener("keydown",function(e){
 function finish(){
 
     swal.fire({
-        title: "You won!",
+        title: "You escaped the dungeon!",
         icon: "success",
         confirmButtonText: 'Restart',
         confirmButtonColor: "darkgreen"
