@@ -158,7 +158,7 @@ function start(){
         title: "Welcome to the dungeon",
         text: "Find the key and escape!",
         button: "Start",
-        confirmButtonColor: "darkgreen"
+        confirmButtonColor: "#384539"
       });
 
 }
@@ -199,7 +199,7 @@ function getKey(){
         title: "You got the key!",
         text:"a door has now opened",
         icon: "success",
-        confirmButtonColor: "darkgreen"
+        confirmButtonColor: "#384539"
       },2000).then(function(isConfirm) {
         let x=420;
         let y=360;
@@ -362,7 +362,7 @@ function finish(){
         title: "You escaped the dungeon!",
         icon: "success",
         confirmButtonText: 'Restart',
-        confirmButtonColor: "darkgreen"
+        confirmButtonColor: "#384539"
       }).then(function(isConfirm) {
         if (isConfirm) {
           location.reload()}
