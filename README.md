@@ -1,1 +1,1 @@
-[labyrinth](https://timotigrjol.github.io/labyrinth/)
+[Labyrinth](https://timotigrjol.github.io/labyrinth/)
